@@ -10,7 +10,7 @@ test1 = "Bugs Bunny"
 test2 = "Hello World"
 test3 = "Spaghetti and Meatballs"
 shiftcypher = 7
-totshift = 0
+totshift = 1
 fixcypher = 26 - shiftcypher
 dim i as integer
 dim j as integer
@@ -24,7 +24,6 @@ for i = 0 to len(test1)
     end if
 next
 print("Your string in lowercase: " + test1)
-answer = test1
 
 
 for i = 0 to len(test1)
@@ -43,14 +42,14 @@ print("This is your string decrypted: " + test1)
 
 
 print("This is your string Solved: ")
+print("Solve: " + test1)
 for i = 1 to 26
-    for j = 1 to len(answer)
-        if(answer[i] >= 97) and (answer[i] <= 122) then
-             answer[i] = 97 + (answer[i] - 97 + totshift) mod 26
+    for j = 0 to len(test1)
+        if(test1[j] >= 97) and (test1[j] <= 122) then
+             test1[j] = 97 + (test1[j] - 97 + totshift) mod 26
         end if
     next
-    print("Solve: " + answer)
-    totshift += 1
+    print("Solve: " + test1)
 next
 
 

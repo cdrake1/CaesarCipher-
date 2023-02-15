@@ -6,7 +6,6 @@ Collin Drake
 Started January 30th 2023
 
 }
-!!!figure out solve!!!!!!
 
 program Caesar_Salad;
 
@@ -19,19 +18,17 @@ var
     i : integer;
     j : integer;
     totalshift : integer;
+    maxshift : integer;
     fixshift : integer;
 begin
+    writeln('Your string: ', teststr);
     teststr := lowercase(teststr);
     writeln('Your string in lowercase: ', teststr);
     
     for i := 1 to length(teststr) do
     begin
         if (ord(teststr[i]) >=97) and (ord(teststr[i]) <= 122) then 
-            if (ord(teststr[i]) = 32) then 
-                teststr[i] := char(32)
-            
-            else 
-                teststr[i] := chr(((ord(teststr[i]) - 97 + shiftcy) mod 26) + 97);
+            teststr[i] := chr(((ord(teststr[i]) - 97 + shiftcy) mod 26) + 97);
     end;
     writeln('This is your encrypted string: ',teststr);
     
@@ -41,27 +38,23 @@ begin
     for i := 1 to length(teststr) do
     begin
         if (ord(teststr[i]) >=97) and (ord(teststr[i]) <= 122) then 
-            if (ord(teststr[i]) = 32) then 
-                teststr[i] := char(32)
-            
-            else 
-                teststr[i] := chr(((ord(teststr[i]) - 97 + fixshift) mod 26) + 97);
+            teststr[i] := chr(((ord(teststr[i]) - 97 + fixshift) mod 26) + 97);
     end;
     writeln('This is your decrypted string: ', teststr);
     
     writeln('This is your solve string: ');
+    writeln('Solve: ',teststr);
     totalshift := 1;
+    maxshift := 26;
     
-    for i := 1 to 26 do
+    for i := 1 to maxshift do
     begin
-    
         for j := 1 to length(teststr) do 
         begin
-            if (ord(teststr[i]) >=97) and (ord(teststr[i]) <= 122) then 
-                teststr[i] := chr(((ord(teststr[i]) - 97 + totalshift) mod 26) + 97);
-                
+            if (ord(teststr[j]) >=97) and (ord(teststr[j]) <= 122) then 
+                teststr[j] := chr(((ord(teststr[j]) - 97 + totalshift) mod 26) + 97);
         end;
-        writeln(teststr);
+        writeln('Solve: ',teststr);
         
     end;
     

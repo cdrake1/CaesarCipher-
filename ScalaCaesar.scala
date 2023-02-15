@@ -7,6 +7,7 @@ object CaesarSalad
       var test3 = "Spaghetti and Meatballs";
       var shiftcypher = 7;
       
+      println("Your string: " + test1)
       test1 = test1.toLowerCase
       println("Your string in lower case: " + test1)
       
@@ -16,7 +17,7 @@ object CaesarSalad
       val decypher = decrypt(cypher, 26 - shiftcypher)
       println("Your string decrypted: " + decypher)
       
-      //solve(test1, 26)
+      solve(test1)
       
     }
     
@@ -46,6 +47,25 @@ object CaesarSalad
         }
     
     }
+    
+    def solve(answer:String) {
+        
+        val shiftw = 1
+        
+        for (x <- 1 to 26) 
+        {
+            for (y <- answer)
+            {
+                if (y >= 97 && y <= 122)
+                    ((y - 97 + shiftw) % 26 + 97).toChar
+                
+            }
+            println(answer)
+			
+		}
+    
+    }
+    
     
    
 }
