@@ -3,7 +3,6 @@
 ! This is my fortran encrypt, decrpyt and solve Caesar Cypher
 ! Collin Drake
 ! Started January 20th 2023
-! change to >= 97 <= 122
 !
 !
 
@@ -11,11 +10,11 @@ Program caesarSalad
     implicit none
     
     character(len = 10) :: test1
-    character(len = 15) :: test2
-    character(len = 20) :: test3
+    character(len = 25) :: test2
+    character(len = 25) :: test3
     integer :: a
     
-
+    ! want different strings with different upper and lowercase characters
     test1 = "BuGs BuNny"
     test2 = "Hello World"
     test3 = "Spaghetti and Meatballs"
@@ -40,6 +39,8 @@ subroutine tolower(test, total)
     integer, intent(inout)  :: total
     integer :: b
         
+    ! 65 - 90 in ascii is the alphabet in uppercase
+    ! add 32 for it to become all lowercase
     do b = 1, total
         if((iachar(test(b:b))>=65) .and. (iachar(test(b:b))<=90)) then
             test(b:b) = char(iachar(test(b:b))+32)
@@ -58,7 +59,8 @@ subroutine encrypt(cypher, length)
     integer :: c
     integer, parameter :: shiftcypher = 7
     
-    
+    !lowercase characters in ascii are from 97 - 122
+    ! mod by 26 to make the alphabet wrap around
     do c = 1, length
         if((iachar(cypher(c:c))>=97) .and. (iachar(cypher(c:c))<=122)) then
             cypher(c:c) = char(mod(iachar(cypher(c:c)) - 97 + shiftcypher, 26) + 97) 
@@ -104,6 +106,9 @@ subroutine solve(answer, maximum)
     y = len(answer)
     print *, 'This is your solve: '
     print *, answer
+
+    ! shift 1 time each letter for 26 letters in the alphabet
+    ! need a nested loop for this
     do x = 1, maximum
     
         do z = 1, y

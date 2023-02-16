@@ -52,15 +52,23 @@ object CaesarSalad
         
         val shiftw = 1
         
+        println("Your string Solved: ")
+        println("Solve: " + answer)
+        
         for (x <- 1 to 26) 
         {
-            for (y <- answer)
-            {
-                if (y >= 97 && y <= 122)
-                    ((y - 97 + shiftw) % 26 + 97).toChar
+            
+            answer.map 
+            { y =>
+              
+              if (y >= 97 && y <= 122)
+                ((y.toInt - 97 + shiftw) % 26 + 97).toChar
+              else
+                y
                 
             }
-            println(answer)
+            
+            println("Solve: " + answer)
 			
 		}
     
