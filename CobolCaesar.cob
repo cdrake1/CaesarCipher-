@@ -1,81 +1,71 @@
+
+      * Welcome to TOPL Programmin In The Past
+      * Collin Drake
       * 
-      * Welcome to GDB Online.
-      * GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-      * C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-      * Code, Compile, Run and Debug online from anywhere in world.
       * 
-      
-        IDENTIFICATION DIVISION.
-        PROGRAM-ID. CAESARSALAD.
-              
+      * 
+      * 
+         IDENTIFICATION DIVISION.
+        PROGRAM-ID. Caesar-salad.
+        
         DATA DIVISION.
-        WORKING-STORAGE SECTION.
-      
-           01 test1 PIC X(20) VALUE "BuGs BunnY".
-           01 test2 PIC X(25) VALUE "Spaghetti and Meatballs".
-           01 test3 PIC X(20) VALUE "Hello World".
-           01 shiftcypher PIC 9 VALUE 7.
-      
+           WORKING-STORAGE SECTION.
+           01 test1 PIC X(20) VALUE 'Bugs Bunny'.
+           01 shiftcipher PIC 99 VALUE 7.
+        
         PROCEDURE DIVISION.
-           CALL 'ENCRYPT' USING test1, shiftcypher.
-      
-          
-           STOP RUN.
-      
-      
+           CALL 'ENCRYPT' USING test1, shiftcipher.
+           
+        STOP RUN.
+        
         IDENTIFICATION DIVISION.
         PROGRAM-ID. ENCRYPT.
-          
-        DATA DIVISION.
-        LINKAGE SECTION.
-      
-           01 test1 PIC X(20).
-           01 shiftcypher PIC 9.
-          
-        PROCEDURE DIVISION USING test1 shiftcypher.
-           DISPLAY test1.
-      
-      
-           EXIT PROGRAM.
-
-
-                 * 
-      * Welcome to GDB Online.
-      * GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-      * C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-      * Code, Compile, Run and Debug online from anywhere in world.
-      * 
-      
-        IDENTIFICATION DIVISION.
-        PROGRAM-ID. CAESARSALAD.
-        ENVIRONMENT DIVISION.
+    
         DATA DIVISION.
         WORKING-STORAGE SECTION.
-        01 test1 PIC X(20) VALUE "BuGs BunnY".
-        01 test2 PIC X(25) VALUE "Spaghetti and Meatballs".
-        01 test3 PIC X(20) VALUE "Hello World".
-        01 shiftcypher PIC 9 VALUE 7.
-        01 SHIFTED-TEXT OCCURS 26 TIMES PIC X(80).
-        PROCEDURE DIVISION.
-      
-          
-        FUNCTION encrypt
-            USING tes, shift
-            
-            LOCAL VARIABLES
-                i PIC 9(4) VALUE 1.
-            END-LOCAL
-            
-            PERFORM VARYING i FROM 1 BY 1 
-                    UNTIL i > LENGTH of test1
-                DISPLAY "HELLO"
-            END PERFORM
-        END FUNCTION
+         01 temp Pic x(25).
+         01 I Pic 9(01).
+           LINKAGE SECTION.
+           01 teststr PIC X(20).
+           01 shiftc PIC 99.
         
-        MAIN PROCEDURE.
-            encrypt(test1, shiftcypher)
-            
-            STOP RUN.
-      
-      
+        PROCEDURE DIVISION USING teststr, shiftc.
+           Display Function Lower-case(teststr).
+           Move Function Lower-case(teststr) to temp
+           
+           PERFORM VARYING I FROM 1 BY 1 UNTIL I > FUNCTION 
+           LENGTH(temp)
+                IF FUNCTION ORD (temp(I:I)) >= 97 AND 
+                FUNCTION ORD (temp(I:I)) <= 122 THEN
+                    MOVE FUNCTION CHAR( FUNCTION MOD(FUNCTION ORD
+                    (temp(I:I)) - 97 + shiftc, 26) + 97) TO temp(I:I)
+                END-IF
+                Display temp
+           END-PERFORM.
+            CALL 'DECRYPT' USING temp, shiftc.
+
+        END PROGRAM ENCRYPT.
         
+        IDENTIFICATION DIVISION.
+        PROGRAM-ID. DECRYPT.
+    
+        DATA DIVISION.
+        WORKING-STORAGE SECTION.
+         01 J Pic 9(01).
+           LINKAGE SECTION.
+           01 tempd PIC X(20).
+           01 shiftb PIC 99.
+        
+        PROCEDURE DIVISION USING tempd, shiftb.
+           
+           PERFORM VARYING J FROM 1 BY 1 UNTIL J > FUNCTION 
+           LENGTH(tempd)
+                IF FUNCTION ORD (tempd(J:J)) >= 97 AND 
+                FUNCTION ORD (tempd(J:J)) <= 122 THEN
+                    MOVE FUNCTION CHAR( FUNCTION MOD(FUNCTION ORD
+                    (tempd(J:J)) - 97 + shiftb, 26) + 97) TO tempd(J:J)
+                END-IF
+                Display tempd
+           END-PERFORM.
+
+        END PROGRAM DECRYPT.
