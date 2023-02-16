@@ -1,4 +1,4 @@
-
+     
       * Welcome to TOPL Programmin In The Past
       * Collin Drake
       * 
@@ -17,8 +17,8 @@
         
         PROCEDURE DIVISION.
         
-           DISPLAY 'Your string: ', test1
-           CALL 'ENCRYPT' USING test1, shiftcipher.
+           DISPLAY 'Your string: ', test3
+           CALL 'ENCRYPT' USING test3, shiftcipher.
            
         STOP RUN.
         
@@ -27,10 +27,10 @@
     
         DATA DIVISION.
         WORKING-STORAGE SECTION.
-         01 temp Pic x(25).
+         01 temp Pic x(30).
          01 X Pic 99(01).
            LINKAGE SECTION.
-           01 teststr PIC X(20).
+           01 teststr PIC X(30).
            01 shiftc PIC 99.
         
         PROCEDURE DIVISION USING teststr, shiftc.
@@ -57,7 +57,7 @@
         WORKING-STORAGE SECTION.
          01 Y Pic 99(01).
            LINKAGE SECTION.
-           01 tempd PIC X(20).
+           01 tempd PIC X(30).
            01 shiftb PIC 99.
         
         PROCEDURE DIVISION USING tempd, shiftb.
@@ -84,7 +84,7 @@
         WORKING-STORAGE SECTION.
          01 Z Pic 99(01).
            LINKAGE SECTION.
-           01 temps PIC X(20).
+           01 temps PIC X(30).
         
         PROCEDURE DIVISION USING temps.
            
@@ -103,7 +103,7 @@
          01 A Pic 99(01).
          01 shiftl PIC 99 VALUE 1.
            LINKAGE SECTION.
-           01 templ PIC X(20).
+           01 templ PIC X(30).
         
         PROCEDURE DIVISION USING templ.
            
@@ -127,3 +127,4 @@
         
         
        
+
