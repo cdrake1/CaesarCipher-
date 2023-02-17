@@ -3,15 +3,15 @@ dim test1 as string
 dim test2 as string 
 dim test3 as string 
 dim answer as string
-dim shiftcypher as integer
-dim fixcypher as integer
+dim shiftcipher as integer
+dim fixcipher as integer
 dim totshift as integer
 test1 = "Bugs Bunny"
 test2 = "Hello World"
 test3 = "Spaghetti and Meatballs"
-shiftcypher = 7
+shiftcipher = 7
 totshift = 1
-fixcypher = 26 - shiftcypher
+fixcipher = 26 - shiftcipher
 dim i as integer
 dim j as integer
 
@@ -28,14 +28,14 @@ print("Your string in lowercase: " + test1)
 
 for i = 0 to len(test1)
     if(test1[i] >= 97) and (test1[i] <= 122) then
-         test1[i] = 97 + (test1[i] - 97 + shiftcypher) mod 26
+         test1[i] = 97 + (test1[i] - 97 + shiftcipher) mod 26
     end if
 next
 print("This is your string encrypted: " + test1)
 
 for i = 0 to len(test1)
     if(test1[i] >= 97) and (test1[i] <= 122) then
-         test1[i] = 97 + (test1[i] - 97 + fixcypher) mod 26
+         test1[i] = 97 + (test1[i] - 97 + fixcipher) mod 26
     end if
 next
 print("This is your string decrypted: " + test1)

@@ -11,9 +11,9 @@ program Caesar_Salad;
 
 var
     test1, test2, test3 : string;
-    shiftcypher : integer;
+    shiftcipher : integer;
     
-procedure problemsolve(teststr : string; shiftcy : integer);
+procedure problemsolve(teststr : string; shiftci : integer);
 var
     i : integer;
     j : integer;
@@ -28,11 +28,11 @@ begin
     for i := 1 to length(teststr) do
     begin
         if (ord(teststr[i]) >=97) and (ord(teststr[i]) <= 122) then 
-            teststr[i] := chr(((ord(teststr[i]) - 97 + shiftcy) mod 26) + 97);
+            teststr[i] := chr(((ord(teststr[i]) - 97 + shiftci) mod 26) + 97);
     end;
     writeln('This is your encrypted string: ',teststr);
     
-    fixshift := 26 - shiftcy;
+    fixshift := 26 - shiftci;
     
     
     for i := 1 to length(teststr) do
@@ -66,8 +66,8 @@ begin
   test1 := 'Bugs Bunny';
   test2 := 'Hello World My Name Is Collin Drake';
   test3 := 'The Broom Was Late to School Because he overSWEPT';
-  shiftcypher := 7;
+  shiftcipher := 7;
   
-    problemsolve(test1,shiftcypher);
+    problemsolve(test1,shiftcipher);
   
 end.

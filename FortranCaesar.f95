@@ -51,42 +51,42 @@ subroutine tolower(test, total)
         
 end subroutine tolower
 
-subroutine encrypt(cypher, length)
+subroutine encrypt(cipher, length)
     implicit none
     
-    character(*), intent(inout)  :: cypher
+    character(*), intent(inout)  :: cipher
     integer, intent(inout)  :: length
     integer :: c
-    integer, parameter :: shiftcypher = 7
+    integer, parameter :: shiftcipher = 7
     
     !lowercase characters in ascii are from 97 - 122
     ! mod by 26 to make the alphabet wrap around
     do c = 1, length
-        if((iachar(cypher(c:c))>=97) .and. (iachar(cypher(c:c))<=122)) then
-            cypher(c:c) = char(mod(iachar(cypher(c:c)) - 97 + shiftcypher, 26) + 97) 
+        if((iachar(cipher(c:c))>=97) .and. (iachar(cipher(c:c))<=122)) then
+            cipher(c:c) = char(mod(iachar(cipher(c:c)) - 97 + shiftcipher, 26) + 97) 
         end if
 	   
 	end do
 
-    print *, 'This is your encrypted statement: ', cypher
+    print *, 'This is your encrypted statement: ', cipher
     
 end subroutine encrypt
 
-subroutine decrypt(decypher, leng)
+subroutine decrypt(decipher, leng)
     implicit none
     
-    character(*), intent(inout)  :: decypher
+    character(*), intent(inout)  :: decipher
     integer, intent(inout)  :: leng
     integer :: d
-    integer, parameter :: fixcypher = 19
+    integer, parameter :: fixcipher = 19
     
     do d = 1, leng
-	    if((iachar(decypher(d:d))>=97) .and. (iachar(decypher(d:d))<=122)) then
-            decypher(d:d) = char(mod(iachar(decypher(d:d)) - 97 + fixcypher, 26) + 97) 
+	    if((iachar(decipher(d:d))>=97) .and. (iachar(decipher(d:d))<=122)) then
+            decipher(d:d) = char(mod(iachar(decipher(d:d)) - 97 + fixcipher, 26) + 97) 
         end if
 	end do
     
-    print *, 'This is your decrypted statement: ', decypher
+    print *, 'This is your decrypted statement: ', decipher
     
     
     
