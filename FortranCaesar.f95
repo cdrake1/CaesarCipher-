@@ -1,6 +1,6 @@
 ! 
 ! Welcome to Programming In The Past assignment for Theory Of Programming Languages
-! This is my fortran encrypt, decrpyt and solve Caesar Cypher
+! This is my fortran encrypt, decrpyt and solve Caesar Cipher
 ! Collin Drake
 ! Started January 20th 2023
 !

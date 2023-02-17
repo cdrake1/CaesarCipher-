@@ -1,7 +1,7 @@
 {
 
 Welcome to Programming In The Past assignment for Theory Of Programming Languages
-This is my Pascal encrypt, decrpyt and solve Caesar Cypher
+This is my Pascal encrypt, decrpyt and solve Caesar Cipher
 Collin Drake
 Started January 30th 2023
 
