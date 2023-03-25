@@ -1,0 +1,17 @@
+open System
+
+let Encrypt (encryptString: string) (shiftB: int) = 
+
+    printfn "%s" encryptString
+    printfn "%d" shiftB
+
+let CaesarCipher() =
+
+    let startString = "Bugs Bunny"
+    printfn "%s" startString
+    let shiftA = 7
+    printfn "%d" shiftA
+    Encrypt startString shiftA
+    
+    
+CaesarCipher()
