@@ -109,4 +109,4 @@ function fix (b) //returns character value of ascii at spot b
     
 }
 
-CaesarCipher()
+CaesarCipher() //call original function
