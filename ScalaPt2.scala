@@ -9,14 +9,16 @@
       
       println(testString)
       
-      encrypt(testString, shifta, i) //call encrypt function
+      Encrypt(testString, shifta, i) //call encrypt function
+      
+      //good
 
    }
    
-   def encrypt(testOne: String, shiftb: Int, j: Int)
+   def Encrypt(testOne: String, shiftb: Int, j: Int)
    {
        var asciiArray = testOne.toCharArray().map(ascii)
-       var size = asciiArray.length
+       var sizeOne = asciiArray.length
        
        if(asciiArray(j) >= 97 & asciiArray(j) <= 122)
        {
@@ -26,26 +28,26 @@
        
        var tempj = j + 1
        
-       if(tempj < size)
+       if(tempj < sizeOne)
        {
-           encrypt(asciiArray.map(fix).mkString(""), shiftb, tempj)
+           Encrypt(asciiArray.map(fix).mkString(""), shiftb, tempj)
        }
        else
        {
            var encrypted = asciiArray.map(fix).mkString("")
            println(encrypted)
            var x = 0
-           decrypt(encrypted, shiftb, x)
+           Decrypt(encrypted, shiftb, x)
            
        }
       
    }
    
-   def decrypt(encryptOne: String, shiftc: Int, k: Int) //fix variables
+   def Decrypt(encryptOne: String, shiftc: Int, k: Int) //fix variables
    {
        
        var asciiEncrypt = encryptOne.toCharArray().map(ascii)
-       var sizeofArray = asciiEncrypt.length
+       var sizeTwo = asciiEncrypt.length
        
        if(asciiEncrypt(k) >= 97 & asciiEncrypt(k) <= 122)
        {
@@ -62,19 +64,28 @@
        
        var tempk = k + 1
        
-       if(tempk < sizeofArray)
+       if(tempk < sizeTwo)
        {
-           decrypt(asciiEncrypt.map(fix).mkString(""), shiftc, tempk)
+           Decrypt(asciiEncrypt.map(fix).mkString(""), shiftc, tempk)
        }
        else
        {
            var decrypted = asciiEncrypt.map(fix).mkString("")
            println(decrypted)
+           //call solve here
            
        }
       
    }
    
+   /*
+   def Solve(solveString, )
+   {
+       
+       //figure out solve for javascript and scala. how to loop 26 times?
+       
+   }
+   */
    
    
    
