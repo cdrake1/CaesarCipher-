@@ -1,17 +1,40 @@
 open System
 
-let Encrypt (encryptString: string) (shiftB: int) = 
+let ascii(a: char) =
 
-    printfn "%s" encryptString
-    printfn "%d" shiftB
+    Convert.ToInt32(a)
+    
+let fix(b: int) =
+
+    Convert.ToChar(b)
+
+let rec Encrypt (testOne: string) (shiftB: int) (j: int) = 
+    
+    let asciiArray = testOne.ToCharArray() |> Array.map ascii
+    
+    let L = asciiArray.Length 
+    
+    printfn "%d" L
+    
+    if (asciiArray.[j] >= 97) && (asciiArray.[j] <= 122) then
+        printfn "%A" asciiArray.[j]
+    
+    
+    if (j < L) then
+        asciiArray |> Array.map fix
+        Encrypt (asciiArray.ToString()) shiftB (j + 1)
+
+    
+    
 
 let CaesarCipher() =
 
-    let startString = "Bugs Bunny"
-    printfn "%s" startString
+    let testString = "Bugs Bunny"
     let shiftA = 7
-    printfn "%d" shiftA
-    Encrypt startString shiftA
+    let test = testString.ToLower()
+    let i = 0
     
+    Encrypt test shiftA i
+
     
 CaesarCipher()
