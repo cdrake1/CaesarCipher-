@@ -1,16 +1,16 @@
- object CaesarCipher
+object CaesarCipher
 {
-   def main(args: Array[String]) 
+   def main(args: Array[String])
    {
       var testString = "Bugs Bunny"
       testString = testString.toLowerCase() //make string lowercase
       var shifta = 7
       var i = 0
-      
+     
       println(testString)
-      
+     
       Encrypt(testString, shifta, i) //call encrypt function
-      
+     
       //good
 
    }
@@ -40,7 +40,7 @@
            Decrypt(encrypted, shiftb, x)
            
        }
-      
+     
    }
    
    def Decrypt(encryptOne: String, shiftc: Int, k: Int) //fix variables
@@ -72,28 +72,53 @@
        {
            var decrypted = asciiEncrypt.map(fix).mkString("")
            println(decrypted)
+           tempk = 0
            //call solve here
+           Solve(decrypted, 1, tempk)
            
        }
-      
+     
    }
    
-   /*
-   def Solve(solveString, )
+   def Solve(solveString: String, maxShift: Int, l: Int )
    {
-       
-       //figure out solve for javascript and scala. how to loop 26 times?
-       
+        if(maxShift <= 26)
+        {
+            var solve = solveString.toCharArray().map(ascii)
+            var sizeSolve = solve.length
+            if(solve(l) >= 97 & solve(l) <= 122)
+            {
+               solve(l) = ((solve(l) - 97 + 1) % 26) + 97
+               
+            }
+           
+            var templ = l + 1
+           
+            if(templ < sizeSolve)
+            {
+               Solve(solve.map(fix).mkString(""), maxShift, templ)
+            }
+            else
+            {
+               var solved = solve.map(fix).mkString("")
+               println(solved)
+               var z = 1
+               var maxShifttemp = maxShift + 1
+               var again = solved
+               Solve(again, maxShifttemp, 0)
+               
+            }
+           
+           
+        }
    }
-   */
+
    
-   
-   
-   def ascii(a: Char): Int = 
+   def ascii(a: Char): Int =
    {
        return a.toInt
    }
-   def fix(b: Int): Char = 
+   def fix(b: Int): Char =
    {
        return b.toChar
    }
