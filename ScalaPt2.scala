@@ -2,7 +2,9 @@ object CaesarCipher
 {
    def main(args: Array[String])
    {
-      var testString = "Bugs Bunny"
+      var testString = "Bugs Bunny" //test strings
+      var testTwo = "Speghetti and Meatballs"
+      var testThree = "Anakin Skywalker"
       testString = testString.toLowerCase() //make string lowercase
       var shifta = 7
       var i = 0
@@ -11,7 +13,6 @@ object CaesarCipher
      
       Encrypt(testString, shifta, i) //call encrypt function
      
-      //good
 
    }
    
@@ -20,24 +21,24 @@ object CaesarCipher
        var asciiArray = testOne.toCharArray().map(ascii)
        var sizeOne = asciiArray.length
        
-       if(asciiArray(j) >= 97 & asciiArray(j) <= 122)
+       if(asciiArray(j) >= 97 & asciiArray(j) <= 122) //check if lowercase
        {
-           asciiArray(j) = ((asciiArray(j) - 97 + shiftb) % 26) + 97
+           asciiArray(j) = ((asciiArray(j) - 97 + shiftb) % 26) + 97 //shift and wrap alphabet
            
        }
        
-       var tempj = j + 1
+       var tempj = j + 1 // shift to next letter
        
-       if(tempj < sizeOne)
+       if(tempj < sizeOne) //check if looped through the whole string
        {
-           Encrypt(asciiArray.map(fix).mkString(""), shiftb, tempj)
+           Encrypt(asciiArray.map(fix).mkString(""), shiftb, tempj) //recursively call itself
        }
        else
        {
            var encrypted = asciiArray.map(fix).mkString("")
            println(encrypted)
            var x = 0
-           Decrypt(encrypted, shiftb, x)
+           Decrypt(encrypted, shiftb, x) //call decrypt
            
        }
      
@@ -49,7 +50,7 @@ object CaesarCipher
        var asciiEncrypt = encryptOne.toCharArray().map(ascii)
        var sizeTwo = asciiEncrypt.length
        
-       if(asciiEncrypt(k) >= 97 & asciiEncrypt(k) <= 122)
+       if(asciiEncrypt(k) >= 97 & asciiEncrypt(k) <= 122) //same as encrypt
        {
            var check = ((asciiEncrypt(k) - 97 - shiftc) % 26)
            
@@ -66,15 +67,14 @@ object CaesarCipher
        
        if(tempk < sizeTwo)
        {
-           Decrypt(asciiEncrypt.map(fix).mkString(""), shiftc, tempk)
+           Decrypt(asciiEncrypt.map(fix).mkString(""), shiftc, tempk) //recursively call itself
        }
        else
        {
            var decrypted = asciiEncrypt.map(fix).mkString("")
            println(decrypted)
            tempk = 0
-           //call solve here
-           Solve(decrypted, 1, tempk)
+           Solve(decrypted, 1, tempk) //call solve
            
        }
      
@@ -82,13 +82,13 @@ object CaesarCipher
    
    def Solve(solveString: String, maxShift: Int, l: Int )
    {
-        if(maxShift <= 26)
+        if(maxShift <= 26) //check if through for 26 letters of alphabet
         {
             var solve = solveString.toCharArray().map(ascii)
             var sizeSolve = solve.length
-            if(solve(l) >= 97 & solve(l) <= 122)
+            if(solve(l) >= 97 & solve(l) <= 122) //lowercase?
             {
-               solve(l) = ((solve(l) - 97 + 1) % 26) + 97
+               solve(l) = ((solve(l) - 97 + 1) % 26) + 97 //shift and wrap
                
             }
            
@@ -96,7 +96,7 @@ object CaesarCipher
            
             if(templ < sizeSolve)
             {
-               Solve(solve.map(fix).mkString(""), maxShift, templ)
+               Solve(solve.map(fix).mkString(""), maxShift, templ) //call for each letter of string
             }
             else
             {
@@ -105,7 +105,7 @@ object CaesarCipher
                var z = 1
                var maxShifttemp = maxShift + 1
                var again = solved
-               Solve(again, maxShifttemp, 0)
+               Solve(again, maxShifttemp, 0) //call for each shift amount
                
             }
            
@@ -114,11 +114,11 @@ object CaesarCipher
    }
 
    
-   def ascii(a: Char): Int =
+   def ascii(a: Char): Int = //function to change to ascii
    {
        return a.toInt
    }
-   def fix(b: Int): Char =
+   def fix(b: Int): Char = //function to change back to character
    {
        return b.toChar
    }
