@@ -1,13 +1,15 @@
 function CaesarCipher()
 {
-      var testString = "Bugs Bunny";
-      var shifta = 7;
-      var i = 0;
-      
-      testString = testString.toLowerCase();  //make string lower case
-      print("Original String: ", testString);
-      var encryptOne = testString.split("").map(ascii); //make string into array of ascii
-      Encrypt(encryptOne, shifta, testString, i); //call encrypt function
+    var testString = "Bugs Bunny";  //test strings
+    var testTwo = "Spaghetti and Meatballs"
+    var testThree = "Happy Easter"
+    var shifta = 7;
+    var i = 0;
+
+    testString = testString.toLowerCase();  //make string lower case
+    print("Original String: ", testString);
+    var encryptOne = testString.split("").map(ascii); //make string into array of ascii
+    Encrypt(encryptOne, shifta, testString, i); //call encrypt function
 
 }
 
@@ -32,7 +34,7 @@ function Encrypt(testOne, shiftb, originalString, j)
         print("Encrypted String: ", encryptedOne);
         j = 0;
         Decrypt(testOne, shiftb, originalString, j, L);  //call decrypt
-        Solve(testOne, 1, j, L, 1);
+        Solve(testOne, 1, j, L, 1); //call solve
     }
    
    
@@ -71,7 +73,7 @@ function Decrypt(testTwo, shiftc, StringLe, k, Le)
 
 function Solve(final, maxShift, l, len, shiftd)
 {
-    if(maxShift <= 26)  // modified condition
+    if(maxShift <= 26)  // loop through 26 times
     {
         if(final[l] >= 97 && final[l] <= 122) //check if between 97 and 122
         {
@@ -82,7 +84,7 @@ function Solve(final, maxShift, l, len, shiftd)
    
         if(l < len)
         {
-            Solve(final, maxShift, l, len, shiftd);  //recursively call encrypt
+            Solve(final, maxShift, l, len, shiftd);  //recursively call itself
         }
         else
         {
@@ -91,7 +93,7 @@ function Solve(final, maxShift, l, len, shiftd)
             maxShift += 1;
             l = 0;
             var again = solved.split("").map(ascii);
-            Solve(again, maxShift, l, len, shiftd);
+            Solve(again, maxShift, l, len, shiftd); //recursively call itself
            
         }
        
