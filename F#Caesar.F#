@@ -1,40 +1,48 @@
 open System
 
-let ascii(a: char) =
 
-    Convert.ToInt32(a)
+    //function from zip file
+let rec charListToIntList (L: char list) : int list =
+    if L = [] then
+        []
+    else
+        [int (List.head L)] @ charListToIntList (List.tail L)
     
-let fix(b: int) =
 
-    Convert.ToChar(b)
+let rec Encrypt (testOne: int list) (shiftB: int) (j: int) = 
 
-let rec Encrypt (testOne: string) (shiftB: int) (j: int) = 
+    //printfn "%A" testOne
     
-    let asciiArray = testOne.ToCharArray() |> Array.map ascii
+    let encrypted = testOne
     
-    let L = asciiArray.Length 
+    if( j < testOne.Length) then
     
-    printfn "%d" L
+        if(testOne.[j] >= 97) && (testOne.[j] <= 122) then
+            encrypted.[j] = ((testOne.[j] - 97 + shiftB) % 26) + 97. //giving me tons of errors with the if statements and types
+        else
+            encrypted.[j] = testOne.[j]
+            
+    else
+        encrypted
+            
     
-    if (asciiArray.[j] >= 97) && (asciiArray.[j] <= 122) then
-        printfn "%A" asciiArray.[j]
+    printfn "%A" encrypted
     
-    
-    if (j < L) then
-        asciiArray |> Array.map fix
-        Encrypt (asciiArray.ToString()) shiftB (j + 1)
-
-    
+    Encrypt encrypted shiftB (j + 1)
     
 
 let CaesarCipher() =
 
     let testString = "Bugs Bunny"
     let shiftA = 7
-    let test = testString.ToLower()
+    let test = testString.ToLower()  //string to lower
     let i = 0
     
-    Encrypt test shiftA i
-
+    let cList = List.ofSeq test //create a char list of string
+    let asciiList = charListToIntList cList //create an ascii list
+    
+    
+    
+    Encrypt asciiList shiftA i
     
 CaesarCipher()
