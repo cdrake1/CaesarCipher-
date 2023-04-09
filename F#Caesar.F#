@@ -1,12 +1,20 @@
 open System
 
+let add (A: int list) : int list = 
+    if A = [] then
+        []
+        
+    else
+        ((B - 97 + shiftB) % 26) + 97
+        
+
 
     //function from zip file
-let rec charListToIntList (L: char list) : int list =
-    if L = [] then
+let rec charListToIntList (B: char list) : int list =
+    if B = [] then
         []
     else
-        [int (List.head L)] @ charListToIntList (List.tail L)
+        [int (List.head B)] @ charListToIntList (List.tail B)
     
 
 let rec Encrypt (testOne: int list) (shiftB: int) (j: int) = 
@@ -18,15 +26,9 @@ let rec Encrypt (testOne: int list) (shiftB: int) (j: int) =
     if( j < testOne.Length) then
     
         if(testOne.[j] >= 97) && (testOne.[j] <= 122) then
-            encrypted.[j] = ((testOne.[j] - 97 + shiftB) % 26) + 97. //giving me tons of errors with the if statements and types
-        else
-            encrypted.[j] = testOne.[j]
+            let x = ((testOne.[j] - 97 + shiftB) % 26) + 97
+            printfn "%d" x
             
-    else
-        encrypted
-            
-    
-    printfn "%A" encrypted
     
     Encrypt encrypted shiftB (j + 1)
     
