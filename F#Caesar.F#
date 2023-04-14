@@ -2,29 +2,28 @@ open System
 
  //function used to shift letters in the string
 let rec doShift (B: int list) (shiftC: int) : int list =
-    if B = [] then
+    if B = [] then  //is list empty
         []
-    else if (List.head B) = 32 then
+    else if (List.head B) = 32 then  //check for space
         32 :: doShift (List.tail B) shiftC
     else
         let shifted = ((List.head B) - 97 + shiftC) % 26
-        if shifted < 0 then 
+        if shifted < 0 then  //check if negative when shifting back
             let newShifted = shifted + 26
             newShifted + 97 :: doShift (List.tail B) shiftC
             
         else
         let lastshifted = shifted + 97
-        lastshifted :: doShift (List.tail B) shiftC
+        lastshifted :: doShift (List.tail B) shiftC  //add to list
         
-
-
 
 //function from zip file reversed
 let rec intListToCharList (A: int list) : char list =
     if A = [] then
         []
     else
-        [char (List.head A)] @ intListToCharList (List.tail A)
+        [char (List.head A)] @ intListToCharList (List.tail A) 
+
 
     //function from zip file
 let rec charListToIntList (C: char list) : int list =
@@ -33,43 +32,45 @@ let rec charListToIntList (C: char list) : int list =
     else
         [int (List.head C)] @ charListToIntList (List.tail C)
         
+let rec Solve (solveArray: int list) (shiftD: int) = 
+    
+    if shiftD < 26 then
+         let solveInt = doShift solveArray (1)
+         let solveChar =  intListToCharList solveInt
+         let solved = String.Concat(solveChar)
+         let tempD = shiftD + 1
+         printfn "%s" solved
+         
+         Solve solveInt tempD
+        
 let Decrypt (encryptArray: int list) (shiftC: int) = 
 
    let decryptInt = doShift encryptArray (-shiftC)
-   
    let decryptChar =  intListToCharList decryptInt
-   
    let decrypted = String.Concat(decryptChar)
    printfn "%s" decrypted
    
-    
-
+   
 let Encrypt (testOne: int list) (shiftB: int) = 
-
  
-    let encryptInt = doShift testOne shiftB
-    
-    let encryptChar =  intListToCharList encryptInt
-    
-    let encrypted = String.Concat(encryptChar)
+    let encryptInt = doShift testOne shiftB  //shifted int list
+    let encryptChar =  intListToCharList encryptInt  //shifted char list
+    let encrypted = String.Concat(encryptChar)  //shifted char list concat to string
+    let lastShift = 0
     printfn "%s" encrypted
     
-    Decrypt encryptInt shiftB
+    Decrypt encryptInt shiftB  //call decrypt
+    Solve testOne lastShift  //call solve
     
-    
-
 let CaesarCipher() =
 
     let testString = "Bugs Bunny"
     let shiftA = 7
     let test = testString.ToLower()  //string to lower
-    
     let cList = List.ofSeq test //create a char list of string
     let asciiList = charListToIntList cList //create an ascii list
     
     printfn "%s" test
-    
-    
     
     Encrypt asciiList shiftA
     
