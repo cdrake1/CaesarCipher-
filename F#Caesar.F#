@@ -1,36 +1,61 @@
 open System
 
-let add (A: int list) : int list = 
-    if A = [] then
-        []
-        
-    else
-        ((B - 97 + shiftB) % 26) + 97
-        
-
-
-    //function from zip file
-let rec charListToIntList (B: char list) : int list =
+ //function used to shift letters in the string
+let rec doShift (B: int list) (shiftC: int) : int list =
     if B = [] then
         []
+    else if (List.head B) = 32 then
+        32 :: doShift (List.tail B) shiftC
     else
-        [int (List.head B)] @ charListToIntList (List.tail B)
-    
-
-let rec Encrypt (testOne: int list) (shiftB: int) (j: int) = 
-
-    //printfn "%A" testOne
-    
-    let encrypted = testOne
-    
-    if( j < testOne.Length) then
-    
-        if(testOne.[j] >= 97) && (testOne.[j] <= 122) then
-            let x = ((testOne.[j] - 97 + shiftB) % 26) + 97
-            printfn "%d" x
+        let shifted = ((List.head B) - 97 + shiftC) % 26
+        if shifted < 0 then 
+            let newShifted = shifted + 26
+            newShifted + 97 :: doShift (List.tail B) shiftC
             
+        else
+        let lastshifted = shifted + 97
+        lastshifted :: doShift (List.tail B) shiftC
+        
+
+
+
+//function from zip file reversed
+let rec intListToCharList (A: int list) : char list =
+    if A = [] then
+        []
+    else
+        [char (List.head A)] @ intListToCharList (List.tail A)
+
+    //function from zip file
+let rec charListToIntList (C: char list) : int list =
+    if C = [] then
+        []
+    else
+        [int (List.head C)] @ charListToIntList (List.tail C)
+        
+let Decrypt (encryptArray: int list) (shiftC: int) = 
+
+   let decryptInt = doShift encryptArray (-shiftC)
+   
+   let decryptChar =  intListToCharList decryptInt
+   
+   let decrypted = String.Concat(decryptChar)
+   printfn "%s" decrypted
+   
     
-    Encrypt encrypted shiftB (j + 1)
+
+let Encrypt (testOne: int list) (shiftB: int) = 
+
+ 
+    let encryptInt = doShift testOne shiftB
+    
+    let encryptChar =  intListToCharList encryptInt
+    
+    let encrypted = String.Concat(encryptChar)
+    printfn "%s" encrypted
+    
+    Decrypt encryptInt shiftB
+    
     
 
 let CaesarCipher() =
@@ -38,13 +63,14 @@ let CaesarCipher() =
     let testString = "Bugs Bunny"
     let shiftA = 7
     let test = testString.ToLower()  //string to lower
-    let i = 0
     
     let cList = List.ofSeq test //create a char list of string
     let asciiList = charListToIntList cList //create an ascii list
     
+    printfn "%s" test
     
     
-    Encrypt asciiList shiftA i
+    
+    Encrypt asciiList shiftA
     
 CaesarCipher()
