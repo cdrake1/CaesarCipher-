@@ -4,5 +4,6 @@
 main() ->
 	TestString = "Bugs Bunny",
 	ShiftAmount = 7,
-	
-	io:fwrite("~p~n", [TestString]).
+	TestLower = string:to_lower(TestString),
+	CharList = re:split(TestLower, ""),
+	io:fwrite("~p~n", [CharList]).
