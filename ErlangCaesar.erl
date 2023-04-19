@@ -5,7 +5,7 @@ encrypt(AsciiList, ShiftA, Count) ->
   
 	if 
 		Count < length(AsciiList) -> 
-      io:fwrite("~w~n", [lists:nth(Count, AsciiList)]),
+			io:fwrite("~w~n", [lists:nth(Count, AsciiList)]),
 			encrypt(AsciiList, ShiftA, Count + 1);
 		true ->
 			ok
