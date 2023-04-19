@@ -1,16 +1,14 @@
--module(prog).
--export([encrypt/2, main/0]).
+-module(main).
+-export([encrypt/2, start/0]).
 
 encrypt(AsciiList, ShiftA) ->
-	io:fwrite("~p~n", [AsciiList]),
-	io:fwrite("~p~n", [ShiftA]).
-	
+	io:fwrite("~w~n", [AsciiList]),
+	io:fwrite("~w~n", [ShiftA]).
 
-main() ->
-	TestString = "Bugs Bunny",
-	ShiftAmount = 7,
-	TestLower = string:to_lower(TestString),
-	IntList = lists:map(fun erlang:integer_to_list/1, TestLower),
-	%% CharList = re:split(TestLower, ""),
-	%%io:fwrite("~p~n", [IntList]),
-	encrypt(IntList, ShiftAmount).
+start() ->
+  TestString = "Bugs Bunny",
+  ShiftAmount = 7,
+  TestLower = string:to_lower(TestString),
+  CharList = re:split(TestLower, ""),
+  %%io:fwrite("~w~n", [IntList]),
+  encrypt(CharList, ShiftAmount).
