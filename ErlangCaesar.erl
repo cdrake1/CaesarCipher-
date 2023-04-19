@@ -1,5 +1,5 @@
 -module(main).
--export([encrypt/3, start/0]).
+-export([start/0]).
 
 %%shiftList(ThisChar, ShiftB) ->
   %if
@@ -7,22 +7,25 @@
       
   %true ->
    %   ww
+      
+encrypt(ThatList, ShiftB, CountT) ->
+
+  
+  
+	if 
+		CountT < length(ThatList) -> 
+      io:fwrite("~w~n", [lists:nth(CountT, ThatList)]),
+			encrypt(ThatList, ShiftB, CountT + 1);
+		true ->
+			ok
+	end.
+
 decrypt(ThisList, ShiftA, CountO) ->
   
 	if 
 		CountO < length(ThisList) -> 
       io:fwrite("~w~n", [lists:nth(CountO, ThisList)]),
 			encrypt(ThisList, ShiftA, CountO + 1);
-		true ->
-			ok
-	end.
-      
-encrypt(ThatList, ShiftB, CountT) ->
-  
-	if 
-		CountT < length(ThatList) -> 
-      io:fwrite("~w~n", [lists:nth(CountT, ThatList)]),
-			encrypt(ThatList, ShiftB, CountT + 1);
 		true ->
 			ok
 	end.
