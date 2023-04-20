@@ -3,23 +3,23 @@
 
 shiftList(ThisChar, ShiftC) ->
   if
-    ThisChar == " " -> " ";
+    ThisChar == " " -> " ";  % check if its a space, return it
     
-    ThisChar >= 97 && ThisChar <= 122 ->
-      Shifted = ThisChar + ShiftC;
+    ThisChar >= 97 && ThisChar <= 122 -> % check if its between lowercase a and z
+      Shifted = ThisChar + ShiftC; % return + 7
       
     true -> ThisChar
   end.
       
 encrypt(ThatList, ShiftB, CountT) ->
 
-  Shifts = lists:map(fun(I) -> shiftList(I , ShiftB) end, ThatList),
-  io:format("~s~n", [Shifts]).
+  Encrypted = lists:map(fun(I) -> shiftList(I , ShiftB) end, ThatList), % map each character to shiftList string
+  io:format("~s~n", [Encrypted]). 
 
 	
 
 decrypt(ThisList, ShiftA, CountO) ->
-  
+  % check to iterate and print out each letter
 	if 
 		CountO < length(ThisList) -> 
       io:fwrite("~w~n", [lists:nth(CountO, ThisList)]),
@@ -31,7 +31,7 @@ decrypt(ThisList, ShiftA, CountO) ->
 start() ->
 	TestString = "Bugs Bunny",
 	Test = 1,
-	TestLower = string:to_lower(TestString),
-	CharList = re:split(TestLower, ""),
-	Encrypted = encrypt(CharList, 7, Test),
-  Decrypted = decrypt(CharList,-7, Test).
+	TestLower = string:to_lower(TestString), % make lower
+	CharList = re:split(TestLower, ""), % make a list of subtrings for each character
+	Encrypted = encrypt(CharList, 7, Test), % pass to function
+  Decrypted = decrypt(CharList,-7, Test). % pass to function
