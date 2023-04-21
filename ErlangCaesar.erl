@@ -14,34 +14,34 @@ shiftList(A, ShiftA) ->
     true -> %if not lowercase or space return NUL/Undefined
       undefined
   end.
-      
+   
 encrypt(TestOne, ShiftB) ->
 
-  EncryptString = lists:map(fun(I) -> shiftList(I , ShiftB) end, TestOne), % map each character to shiftList function
-  io:format("~s~n", [EncryptString]),
+  EncryptString = lists:map(fun(I) -> shiftList(I , ShiftB) end, TestOne), %map each character to shiftList function
   EncryptString.
 
 decrypt(TestTwo, ShiftC) ->
-%working but not correct
-  DecryptString = encrypt(TestTwo, ShiftC),
+  DecryptString = encrypt(TestTwo, ShiftC), %call encrypt with reverse shift amount
   DecryptString.
 
 solve(Original, ShiftD, Count) ->
-% not working
   if 
-    Count < 26 ->
+    Count < 26 -> %check if looped all the way through
       Solved = Original,
-      Solve = encrypt(Solved, Count),
+      Solve = lists:map(fun(J) -> shiftList(J , ShiftD) end, Solved), %shift for each letter
       io:format("~s~n", [Solve]),
-      CountTemp = Count + 1,
-      solve(Solve, ShiftD, CountTemp);
-    true ->
+      CountTemp = Count + 1, %increase count
+      solve(Solve, ShiftD, CountTemp); %recursion
+    true -> %return NUL/Undefined if count >= 26
       undefined
   end.
 
 start() ->
 	TestString = "Bugs Bunny",
 	TestLower = string:to_lower(TestString), % make lower
-	Encrypted = encrypt(TestLower, 7), % pass to function
-	Decrypted = decrypt(Encrypted,-7), % pass to function
-	solve(Decrypted, 1, 26).
+	Encrypted = encrypt(TestLower, 7), %call encrypt
+	Decrypted = decrypt(Encrypted,-7), %call decrypt
+	io:format("~s~n", [TestLower]),
+	io:format("~s~n", [Encrypted]),
+	io:format("~s~n", [Decrypted]),
+	solve(Decrypted, 1, 0). %call solve
